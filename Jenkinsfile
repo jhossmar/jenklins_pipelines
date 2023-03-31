@@ -8,6 +8,11 @@ pipeline {
         SERVICE_NAME="myapp-dj"
     }
     stages {
+        stage ('Clone'){
+            steps{
+                git branch: "${params.BRANCH}", url: 'https://github.com/jhossmar/DevOps_Practice_Repository.git'
+            }
+        }
         stage('Build') {
             steps {
                 script {
