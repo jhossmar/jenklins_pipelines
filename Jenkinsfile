@@ -11,7 +11,11 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                   sh "cd /home/marcelo/Desktop/django/mysite; docker build -t 192.168.100.145:8082/${env.SERVICE_NAME}:${BUILD_NUMBER} . ; docker push 192.168.100.145:8082/${env.SERVICE_NAME}:${BUILD_NUMBER}"
+                    dir('/home/marcelo/Desktop/django/mysite') {
+                        sh "docker build -t 192.168.100.145:8082/${env.SERVICE_NAME}:${BUILD_NUMBER} ."
+                        sh "docker push 192.168.100.145:8082/${env.SERVICE_NAME}:${BUILD_NUMBER}"
+                    }
+                   
                    sh "docker image rm 192.168.100.145:8082/${env.SERVICE_NAME}:${BUILD_NUMBER}"
                     
                 }
