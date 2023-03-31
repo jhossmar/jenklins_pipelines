@@ -10,7 +10,9 @@ pipeline {
     stages {
         stage ('Clone'){
             steps{
-                git branch: 'develop', url: 'https://github.com/jhossmar/DevOps_Practice_Repository.git'
+                script (
+                git branch: 'final', url: 'https://github.com/jhossmar/DevOps_Practice_Repository.git'
+                }
             }
         }
         stage('Build') {
